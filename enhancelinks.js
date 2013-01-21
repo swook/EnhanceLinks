@@ -45,6 +45,7 @@
 			$.each(hostStatusCache[host], function(i, v) {
 				favicon(v,favurl)
 			});
+			delete hostStatusCache[host];
 		});
 	}
 
