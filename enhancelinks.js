@@ -53,8 +53,9 @@
 		if ($a.children().length > 0) return;
 
 		// Set favicon height
-		var lh = $a.height(),
+		var lh = parseInt($a.css('line-height')),
 			fh = lh < 18 ? lh - 2 : 16;
+		console.log(lh);
 		var ficon = $("<img>").prop("src", favurl).css({
 			"height": fh,
 			"margin-top": (lh-fh)/2
