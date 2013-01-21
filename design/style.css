@@ -1,0 +1,12 @@
+/* EnhanceLinks Plugin for Vanilla Forums by Seon-Wook Park | CC BY-NC-SA */
+
+a.EnhanceLinks img.favicon {
+	vertical-align: top;
+	margin-right: 2.5px;
+	width: 0;
+	-webkit-transition: width .5s;
+	-moz-transition: width .5s;
+	-ms-transition: width .5s;
+	-o-transition: width .5s;
+	transition: width .5s;
+}
