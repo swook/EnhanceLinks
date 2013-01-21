@@ -1,5 +1,9 @@
 /* EnhanceLinks Plugin for Vanilla Forums by Seon-Wook Park | CC BY-NC-SA */
 
+a.EnhanceLinks {
+	display: inline-block;
+}
+
 a.EnhanceLinks img.favicon {
 	vertical-align: top;
 	margin-right: 2.5px;
