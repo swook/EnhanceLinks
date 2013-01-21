@@ -7,7 +7,14 @@
 	});
 
 	function init() {
-		$('div.Message a').each(inspect);
+		$('.Message a').each(inspect);
+
+		// Listen for new comments
+		$('.MessageList').live('DOMNodeInserted', function(e) {
+			if ($(e.target).hasClass('Comment')) {
+				$('.Message a', e.target).each(inspect);
+			}
+		});
 	}
 
 	function inspect() {
