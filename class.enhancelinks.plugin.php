@@ -4,8 +4,8 @@
 
 $PluginInfo['EnhanceLinks'] = array(
 	'Name' => 'EnhanceLinks',
-	'Description' => 'Allows automatic embedding of media by converting media links to embed code. Supports Youtube, Vimeo, Imgur, Pastebin, Soundcloud [Bandcamp].',
-	'Version' => '0.1.0',
+	'Description' => 'Enhances links with actions such as prepending favicon images.',
+	'Version' => '0.1.1',
 	'Date' => '20 Jan 2012',
 	'Author' => 'Seon-Wook Park',
 	'AuthorEmail' => 'seon.wook@swook.net',
