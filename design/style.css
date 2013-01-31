@@ -14,3 +14,13 @@ a.EnhanceLinks img.favicon {
 	-o-transition: width .5s;
 	transition: width .5s;
 }
+
+a.EnhanceLinks img.thumbnail {
+	z-index: 100;
+	position: absolute;
+	overflow: hidden;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px #aaa solid;
+}

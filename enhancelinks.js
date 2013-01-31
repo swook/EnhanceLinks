@@ -19,19 +19,23 @@
 
 	function inspect() {
 		var $this = $(this),
-			host = parseURL($this.prop('href')).host;
-		if (host == parseURL(window.location.href).host) return;
-		checkHost(host, $this);
+			urlo = parseURL($this.prop('href'))
+			host = urlo.host;
+		checkFavicon(host, $this);
+		applyThumbnail($this, urlo.full);
 	}
 
-	var hostStatusCache = {};
-	function checkHost(host, $el) {
-		if (host in hostStatusCache) {
-			hostStatusCache[host].push($el);
+	var faviconCheckCache = {};
+	function checkFavicon(host, $el) {
+		if (host == parseURL(window.location.href).host) return;
+		if ($el.children().length > 0) return;
+
+		if (host in faviconCheckCache) {
+			faviconCheckCache[host].push($el);
 			return;
 		}
 
-		hostStatusCache[host] = [$el];
+		faviconCheckCache[host] = [$el];
 		var favurl = "http://getfavicon.appspot.com/http://"+host+"?defaulticon=none",
 			yql = "http://query.yahooapis.com/v1/public/yql?q=use%20%22https%3A%2F%2Fgist.github.com%2Fraw%2F4582385%2Fc702921ed41d7d95b0735cf66a214cf507ebbb7c%2Fhttpstatus.xml%22%3Bselect%20*%20from%20httpstatus%20where%20url%3D%22";
 		yql += encodeURIComponent(favurl);
@@ -42,16 +46,14 @@
 				data.results.result.status != "200")
 				return;
 
-			$.each(hostStatusCache[host], function(i, v) {
-				favicon(v,favurl)
+			$.each(faviconCheckCache[host], function(i, v) {
+				applyFavicon(v,favurl)
 			});
-			delete hostStatusCache[host];
+			delete faviconCheckCache[host];
 		});
 	}
 
-	function favicon($a, favurl) {
-		if ($a.children().length > 0) return;
-
+	function applyFavicon($a, favurl) {
 		// Set favicon height
 		var lh = parseInt($a.css('line-height')),
 			fh = lh < 18 ? lh - 2 : 16;
@@ -63,6 +65,23 @@
 		setTimeout(function() {
 			ficon.css("width", fh)
 		},0);
+	}
+
+	function applyThumbnail($a, url) {
+		$a.hover(function(e) {
+			destroyThumbnails();
+			var img = $('<img>').addClass('thumbnail');
+			img.prop("src", "http://free.pagepeeker.com/v2/thumbs.php?size=s&url="+encodeURIComponent(url));
+			img.css("top", $a.height()+$a.position().top+2);
+			img.load(function() {
+				$a.addClass('EnhanceLinks').prepend(img);
+			});
+		}, destroyThumbnails);
+	}
+	function destroyThumbnails() {
+		$('a.EnhanceLinks img.thumbnail').fadeOut(function() {
+			$(this).remove()
+		});
 	}
 
 	var urlcache = {};
