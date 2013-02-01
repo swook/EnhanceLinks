@@ -5,8 +5,8 @@
 $PluginInfo['EnhanceLinks'] = array(
 	'Name' => 'EnhanceLinks',
 	'Description' => 'Enhances links with actions such as prepending favicon images.',
-	'Version' => '0.1.7',
-	'Date' => '31 Jan 2012',
+	'Version' => '0.1.8',
+	'Date' => '01 Feb 2012',
 	'Author' => 'Seon-Wook Park',
 	'AuthorEmail' => 'seon.wook@swook.net',
 	'AuthorUrl' => 'http://www.swook.net/',
